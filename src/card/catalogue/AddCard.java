@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package card.catalogue;
+import sun.applet.Main;
+
 import java.util.ArrayList;
 import java.util.Date;
 /**
@@ -14,8 +16,8 @@ public class AddCard extends javax.swing.JFrame {
     /**
      * Creates new form AddCard
      */
-    public AddCard() {
-        initComponents();
+    public AddCard(CatalogueStart catalogue) {
+        initComponents(catalogue);
         this.dispose();
     }
 
@@ -27,7 +29,7 @@ public class AddCard extends javax.swing.JFrame {
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(CatalogueStart catalogue) {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -61,7 +63,7 @@ public class AddCard extends javax.swing.JFrame {
         jButton1.setText("ADD");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButton1ActionPerformed(evt, catalogue);
             }
         });
 
@@ -116,7 +118,7 @@ public class AddCard extends javax.swing.JFrame {
            
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt, CatalogueStart catalogue) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Date date= new Date();
         String stringDate = date.toString();
@@ -127,7 +129,10 @@ public class AddCard extends javax.swing.JFrame {
                     stringDate,stringDate,"Rob", "Lim");
         
         catalogue.addToList(catalogue.getList(), card);
+        System.out.println(catalogue.catalogNumber());
 
+        MainMenu menu = new MainMenu(catalogue.cardList);
+        menu.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -156,11 +161,11 @@ public class AddCard extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddCard.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        CatalogueStart catalogue = new CatalogueStart();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddCard().setVisible(true);
+                new AddCard(catalogue).setVisible(true);
             }
         });
     }

@@ -6,6 +6,8 @@
 package card.catalogue;
 
 import javax.swing.JOptionPane;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,11 +15,12 @@ import javax.swing.JOptionPane;
  */
 public class MainMenu extends javax.swing.JFrame {
 
+    CatalogueStart catalogue = new CatalogueStart();
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
-        initComponents();
+    public MainMenu(ArrayList<CatalogueClass> list) {
+        initComponents(list);
     }
 
     /**
@@ -27,8 +30,7 @@ public class MainMenu extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
-
+    private void initComponents(ArrayList<CatalogueClass> list) {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -50,7 +52,7 @@ public class MainMenu extends javax.swing.JFrame {
         jButton2.setText("EDIT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton2ActionPerformed(evt, list);
             }
         });
 
@@ -99,13 +101,13 @@ public class MainMenu extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        AddCard card = new AddCard();
+        AddCard card = new AddCard(catalogue);
         card.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt, ArrayList<CatalogueClass> list) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        CatalogueStart lol = new CatalogueStart();
+        CatalogueStart lol = new CatalogueStart(list);
         System.out.println(lol.catalogNumber());
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -136,10 +138,11 @@ public class MainMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
 
+        ArrayList<CatalogueClass> list = new ArrayList<>();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                new MainMenu(list).setVisible(true);
             }
         });
     }

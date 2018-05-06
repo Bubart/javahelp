@@ -14,10 +14,13 @@ public class CatalogueStart {
             
     private Date date = new Date();
     private String dateString = date.toString();
-    
+    ArrayList<CatalogueClass> cardList = new ArrayList<>();
+
+    public CatalogueStart() {
+    }
+
     public CatalogueStart(ArrayList<CatalogueClass> cList){
-        MainMenu menu = new MainMenu();
-        cList
+        MainMenu menu = new MainMenu(cList);
         menu.setVisible(true);
     }
 
